@@ -2,7 +2,6 @@
   min-height: 20vh;
   display: flex;
   flex-direction: column;
-  background: aquamarine;
   align-items: center;
   justify-content: space-between;
 }
@@ -11,7 +10,7 @@
   display: flex;
   input {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem 0rem;
   }
   p {
     padding: 1rem;
