@@ -9,6 +9,7 @@ import {
 const Player = (props) => {
   //props
   const { song, playing, setPlaying } = props;
+
   //ref
   const audioRef = useRef(null);
 
@@ -29,6 +30,7 @@ const Player = (props) => {
     }
   };
 
+  //event handler
   const updateTimeHandler = (event) => {
     setSongInfo({
       ...songInfo,
@@ -37,14 +39,24 @@ const Player = (props) => {
     });
   };
 
+  //event handler
   const getCleanTime = (time) => {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
   };
+
+  //event handler
   const dragHandler = (event) => {
     audioRef.current.currentTime = event.target.value;
     setSongInfo({ ...songInfo, currentTime: event.target.value });
+  };
+
+  //event handler
+  const autoPlayHandler = () => {
+    if (playing) {
+      audioRef.current.play();
+    }
   };
 
   return (
@@ -79,6 +91,7 @@ const Player = (props) => {
         src={song.audio}
         onTimeUpdate={updateTimeHandler}
         onLoadedMetadata={updateTimeHandler}
+        onLoadedData={autoPlayHandler}
       ></audio>
     </div>
   );
