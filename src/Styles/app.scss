@@ -1,3 +1,8 @@
+$accent-color: #f98edc;
+$background-color: white;
+$background-color-dark: rgb(36, 36, 36);
+$text-color: black;
+$transition-delay: 1s;
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +21,17 @@ h4 {
 
 body {
   font-family: "Noto Sans JP", sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+}
+.dark {
+  background-color: $background-color-dark;
+  color: $background-color;
+}
+.theme-icon {
+  top: 1rem;
+  right: 1rem;
+  position: fixed;
 }
 @import "./song";
 @import "./player";
