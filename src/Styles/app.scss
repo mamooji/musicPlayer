@@ -28,11 +28,7 @@ body {
   background-color: $background-color-dark;
   color: $background-color;
 }
-.theme-icon {
-  top: 1rem;
-  right: 1rem;
-  position: fixed;
-}
 @import "./song";
 @import "./player";
 @import "./library";
+@import "./nav";
