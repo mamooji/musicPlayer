@@ -5,20 +5,16 @@ const LibrarySong = (props) => {
   //event handler
   const songSelectHandler = () => {
     setCurrentSong(song);
-    console.log(song.id);
-    console.log(currentSong);
-    // const newSongs = songs.map((targetSong) => {
-    //   return {
-    //     ...targetSong,
-    //     active: targetSong.id === song.id,
-    //   };
-    // });
-    // setSongs(newSongs);
+  };
+  var divStyle = {
+    background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
   };
 
   return (
     <div
-      className={`library-song ${song.id === currentSong.id ? "selected" : ""}`}
+      style={song.id === currentSong.id ? divStyle : {}}
+      className={"library-song"}
+      // className={`library-song ${song.id === currentSong.id ? "selected" : ""}`}
       onClick={songSelectHandler}
     >
       <img src={song.cover} alt={song.name} />

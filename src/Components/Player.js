@@ -17,6 +17,7 @@ const Player = (props) => {
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
+    animationPercentage: 0,
   });
 
   //event handler
@@ -36,6 +37,9 @@ const Player = (props) => {
       ...songInfo,
       currentTime: event.target.currentTime,
       duration: event.target.duration,
+      animationPercentage: Math.round(
+        (event.target.currentTime / event.target.duration) * 100
+      ),
     });
   };
 
@@ -75,19 +79,31 @@ const Player = (props) => {
       }
     }
   };
+  const trackAnimation = {
+    transform: `translateX(${songInfo.animationPercentage}%)`,
+  };
 
   return (
     <div className="player">
       <div className="time-control">
         <p>{getCleanTime(songInfo.currentTime)}</p>
-        <input
-          min={0}
-          value={songInfo.currentTime}
-          onChange={dragHandler}
-          max={songInfo.duration || 0}
-          type="range"
-        />
-        <p>{getCleanTime(songInfo.duration)}</p>
+        <div
+          style={{
+            background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+          }}
+          className="track"
+        >
+          <input
+            min={0}
+            value={songInfo.currentTime}
+            onChange={dragHandler}
+            max={songInfo.duration || 0}
+            type="range"
+          />
+          <div style={trackAnimation} className="animate-track"></div>
+        </div>
+
+        <p>{songInfo.duration ? getCleanTime(songInfo.duration) : "0:00"}</p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon
@@ -115,6 +131,7 @@ const Player = (props) => {
         onTimeUpdate={updateTimeHandler}
         onLoadedMetadata={updateTimeHandler}
         onLoadedData={autoPlayHandler}
+        onEnded={() => skipTrackHandler("forward")}
       ></audio>
     </div>
   );

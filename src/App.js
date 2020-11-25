@@ -7,9 +7,7 @@ import Nav from "./Components/Nav";
 //style import
 import "./Styles/app.scss";
 //Utility import
-import Data from "./util";
-//icon import
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Data from "./data";
 function App() {
   //state
   const [songs, setSongs] = useState(Data);
@@ -18,7 +16,7 @@ function App() {
   const [sideBarStatus, setSideBarStatus] = useState(false);
 
   return (
-    <div className="App">
+    <div className={`App ${sideBarStatus ? "library-active" : ""}`}>
       <Nav sideBarStatus={sideBarStatus} setSideBarStatus={setSideBarStatus} />
       <Song currentSong={currentSong} />
       <Player
