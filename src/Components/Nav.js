@@ -14,7 +14,7 @@ const Nav = (props) => {
       setTheme("dark");
       return document.body.classList.add("dark");
     }
-  });
+  }, []);
 
   //function handler
   const themeHandler = () => {
